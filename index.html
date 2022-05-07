@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+            <img src="images/_logo.png" alt="">
+        <form class="form" onsubmit="sendEmail(); reset(); return false">
+            <h3>Contáctenos</h3>
+            <input type="text" id="name" placeholder="Nombre" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="phone" id="phone" placeholder="Teléfono" required>
+            <textarea name="" id="message" rows="4" placeholder="Pedido" maxlength="1000"></textarea>
+            <button type="submit" class="btn">Enviar</button>
+        </form>
+    </div>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        function sendEmail() {
+            Email.send({
+                Host: "smtp.gmail.com",
+                Username: "javinederlands@gmail.com",
+                Password: "@rturo1951",
+                To: 'javinederlands@gmail.com',
+                From: document.getElementById("email").value,
+                Subject: "Pedido de " + document.getElementById("name").value,
+                Body: "Name: " + document.getElementById("name").value +
+                "<br> Email: " + document.getElementById("email").value +
+                "<br> Phone: " + document.getElementById("phone").value +
+                "<br> Message: " + document.getElementById("message").value
+            }).then(
+                message => alert("Message sent sucessfuly")
+            );
+        }
+    </script>
+</body>
+
+</html>
